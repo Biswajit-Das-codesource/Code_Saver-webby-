@@ -73,7 +73,9 @@ const CreateProject = () => {
       <Card className="w-[450px] bg-[#121212] text-white border border-gray-700">
         <CardHeader>
           <CardTitle>Create Project</CardTitle>
-          <CardDescription>Deploy your new project in one-click.</CardDescription>
+          <CardDescription>
+            Deploy your new project in one-click.
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit}>
@@ -89,11 +91,14 @@ const CreateProject = () => {
                   onChange={handleChange}
                 />
               </div>
-              
+
               {/* Programming Language Selection */}
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="language">Programming Language</Label>
-                <Select value={formData.language} onValueChange={handleSelectChange}>
+                <Select
+                  value={formData.language}
+                  onValueChange={handleSelectChange}
+                >
                   <SelectTrigger
                     id="language"
                     className="bg-[#1f1f1f] text-white border-gray-600"
@@ -111,7 +116,7 @@ const CreateProject = () => {
                   </SelectContent>
                 </Select>
               </div>
-              
+
               {/* Code Input Field */}
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="code">Code</Label>
@@ -124,7 +129,7 @@ const CreateProject = () => {
                 ></textarea>
               </div>
             </div>
-            
+
             {/* Form Actions */}
             <CardFooter className="flex justify-between mt-4">
               <Button variant="outline" type="button">

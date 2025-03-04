@@ -10,6 +10,7 @@ import {
   handleCommentcodes,
   handleDeleteCode,
   handleSendcode,
+
 } from "../controllers/code.controller.js";
 import { checkauth } from "../middlewares/checkauth.js";
 
@@ -27,5 +28,5 @@ app.get("/getallcodes", checkauth, getallCode);
 app.delete("/delete/:id", checkauth, handleDeleteCode);
 app.post("/addComment/:id", checkauth, handleCommentcodes);
 app.get("/getcode/:id", checkauth, getSingleCode);
-
+  
 export default app;

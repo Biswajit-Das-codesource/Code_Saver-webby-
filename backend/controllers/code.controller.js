@@ -26,7 +26,9 @@ export async function handleSendcode(req, res) {
 
 export async function getallCode(req, res) {
   try {
-    const code = await codemodel.find({}).populate("createdBy", "username email");
+    const code = await codemodel
+      .find({})
+      .populate("createdBy", "username email");
 
     res.status(200).json({
       message: "Here are all the codes",
@@ -66,7 +68,6 @@ export async function handleDeleteCode(req, res) {
   }
 }
 
-
 export async function handleCommentcodes(req, res) {
   const { text } = req.body;
   if (!text) {
@@ -86,25 +87,25 @@ export async function handleCommentcodes(req, res) {
 
   // Ensure user ID is an ObjectId
   const newComment = {
-    user:req.user.userid,  
+    user: req.user.userid,
     text,
   };
 
   codes.comments.push(newComment);
-  await codes.save(); 
+  await codes.save();
 
   const updatedCode = await codemodel
-  .findById(req.params.id)
-  .populate({ path: "comments", populate: { path: "user",model:"user" } })
-  
-  console.log(updatedCode)
+    .findById(req.params.id)
+    .populate({ path: "comments", populate: { path: "user", model: "user" } });
+
+  console.log(updatedCode);
   res.json({ message: "Comment added!", comments: updatedCode });
 }
 
-
-
 export async function getSingleCode(req, res) {
-  const code = await codemodel.findById(req.params.id).populate("createdBy", "username email");
+  const code = await codemodel
+    .findById(req.params.id)
+    .populate("createdBy", "username email");
 
   if (!code) {
     return res.status(404).json({
@@ -113,14 +114,14 @@ export async function getSingleCode(req, res) {
     });
   }
 
-  const userCodes = await codemodel.findById(req.params.id).populate("comments.user")
+  const userCodes = await codemodel
+    .findById(req.params.id)
+    .populate("comments.user");
 
-  console.log(userCodes.comments[0])
-  
+    
   res.json({
     message: "Here is the code",
     code,
-    userCodes
-
+    userCodes,
   });
 }

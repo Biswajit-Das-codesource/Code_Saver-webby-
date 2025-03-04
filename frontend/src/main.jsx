@@ -16,6 +16,9 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 import ViewProfile from "./components/ViewProfile";
 import CodeCommentPage from "./components/Comment";
+import CreateProject from "./components/Code";
+import Documentation from "./components/Docs";
+import Viewcode from "./components/Viewcode";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +52,14 @@ const router = createBrowserRouter([
       {
         path:"code/comment/:id",
         element:<CodeCommentPage/>
+      },
+      {
+        path:"/about",
+        element:<Documentation/>
+      },
+      {
+        path:"/viewcode/:id",
+        element:<Viewcode/>
       }
     ],
   },

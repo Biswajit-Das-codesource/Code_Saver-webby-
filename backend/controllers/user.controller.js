@@ -4,7 +4,7 @@ import { generatetoken } from "../utils/generateToken.js";
 import codemodel from "../models/Deploy.model.js"
 export async function handleSignup(req, res) {
   try {
-    const { username, password, email, phonenumber } = req.body;
+    const { username, password, email, phonenumber,bio } = req.body;
 
     if (!username || !password || !email || !phonenumber) {
       return res.status(400).json({
@@ -32,6 +32,7 @@ export async function handleSignup(req, res) {
       email,
       password: hashPassword,
       phonenumber,
+      bio
     });
 
     return res.status(200).json({

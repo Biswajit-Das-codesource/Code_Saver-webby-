@@ -12,31 +12,29 @@ import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import Aurora from "@/blocks/Backgrounds/Aurora/Aurora";
 import { useState } from "react";
-import axios from "axios";  // Import Axios
+import axios from "axios"; // Import Axios
 import { toast, Toaster } from "sonner";
 import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { setuser } from "@/redux/Slice";
 
 export default function Signup() {
-
-  const navigate=useNavigate()
+  const navigate = useNavigate();
 
   const [input, setInput] = useState({
     username: "",
     password: "",
     email: "",
     phonenumber: "",
+    bio:""
   });
 
   function handleChange(e) {
-
-
     const { name, value } = e.target;
     setInput({ ...input, [name]: value });
   }
 
-  const dispatch=useDispatch()
+  const dispatch = useDispatch();
   async function handleSubmit(e) {
     e.preventDefault();
     console.log("Submitting Data:", input);
@@ -47,15 +45,17 @@ export default function Signup() {
         input,
         { withCredentials: true } // Allows cookies if used
       );
-      
-      toast("signup Success fully")
-      console.log("Signup Success:", response.data);  
-      setTimeout(() => navigate("/login"), 2000);  
+
+      toast("signup Success fully");
+      console.log("Signup Success:", response.data);
+      setTimeout(() => navigate("/login"), 2000);
       // dispatch(setuser())
     } catch (error) {
-      console.log(error)
+      console.log(error);
       console.error("Signup Error:", error.response?.data);
-     toast.error("Signup Failed! " + (error.response?.data?.message || "Try again."));
+      toast.error(
+        "Signup Failed! " + (error.response?.data?.message || "Try again.")
+      );
     }
   }
 
@@ -74,30 +74,67 @@ export default function Signup() {
                 {/* Username */}
                 <div className="flex flex-col space-y-1.5">
                   <Label htmlFor="username">Username</Label>
-                  <Input id="username" placeholder="Enter your username" onChange={handleChange} name="username" />
+                  <Input
+                    id="username"
+                    placeholder="Enter your username"
+                    onChange={handleChange}
+                    name="username"
+                  />
                 </div>
-                <Toaster position="top-right"/>
+                <Toaster position="top-right" />
                 {/* Email */}
                 <div className="flex flex-col space-y-1.5">
                   <Label htmlFor="email">Email</Label>
-                  <Input id="email" type="email" placeholder="Enter your email" onChange={handleChange} name="email" />
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="Enter your email"
+                    onChange={handleChange}
+                    name="email"
+                  />
                 </div>
 
                 {/* Password */}
                 <div className="flex flex-col space-y-1.5">
                   <Label htmlFor="password">Password</Label>
-                  <Input id="password" type="password" placeholder="Enter your password" onChange={handleChange} name="password" />
+                  <Input
+                    id="password"
+                    type="password"
+                    placeholder="Enter your password"
+                    onChange={handleChange}
+                    name="password"
+                  />
                 </div>
 
                 {/* Phone Number */}
                 <div className="flex flex-col space-y-1.5">
                   <Label htmlFor="phone">Phone Number</Label>
-                  <Input id="phone" type="tel" placeholder="Enter your phone number" onChange={handleChange} name="phonenumber" />
+                  <Input
+                    id="phone"
+                    type="tel"
+                    placeholder="Enter your phone number"
+                    onChange={handleChange}
+                    name="phonenumber"
+                  />
+                </div>
+
+
+                <div className="flex flex-col space-y-1.5">
+                  <Label htmlFor="phone">Bio</Label>
+                  <Input
+                    id="phone"
+                    type="text"
+                    placeholder="Enter your Bio"
+                    onChange={handleChange}
+                    name="bio"
+                  />
                 </div>
               </div>
 
               <CardFooter className="flex justify-between mt-4">
-                <Button variant="outline" type="button">Cancel</Button>
+                <Button variant="outline" type="button">
+                  Cancel
+                </Button>
                 <Button type="submit">Register</Button>
               </CardFooter>
             </form>

@@ -19,7 +19,7 @@ const codeSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "user",
     },
-    
+
     comments: [
       {
         text: {
@@ -32,7 +32,6 @@ const codeSchema = new mongoose.Schema(
         },
       },
     ],
-
   },
   { timestamps: true }
 );
